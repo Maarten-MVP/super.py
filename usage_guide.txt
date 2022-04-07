@@ -1,0 +1,91 @@
+USAGE GUIDE FOR SUPER.PY
+
+| Purpose of the app:
+
+Super.py is a commandline tool that keeps track of the inventory, purchases, sales and has numerous reporting functions.
+
+| Summary of all functions
+
+	1. buy: register bought goods and add them to the inventory
+	2. sell: register sold goods and remove them from the inventory
+	3. set-date: set the working date (= today at first time use)
+	4. report: make reports. Possible reports:
+		4.1. inventory		(current state of the inventory)
+		4.2. sell_ledger		(overview of all sales)
+		4.3. buy_ledger		(overview of purchases)
+		4.4. profit			(total profit or in a specific timeframe)
+		4.5. revenue		(total revenue or in a specific timeframe)
+		4.6. graph_profit		(visualisation of profit evolution of past 5 days)
+
+| Deepdive in each function
+
+	1. buy
+
+	Command-line command: python super.py buy (name of the product) (price) (expiration date)
+
+	Example: python super.py wortels 10 12/12/2022
+
+	Arguments:
+		name of the product: required! no spaces allowed
+		price: required! only numeric input, dont use currency symbols such as €, $, ...
+		expiration date: required! expiration date of the product. Use the correct format dd/mm/yy
+	
+		The order and position of the arguments are important.
+
+	Detailed function results:
+		when the function successfully ran, you will get a message in the terminal such as "1 wortels have been added to the inventory". At first time use, the app will create 3 files in the data folder: buy_ledger.csv, inventory.csv and set_date.text (holds the working date).
+		
+
+
+	2. sell
+
+	Command-line command: python super.py sell (name of the product) (price) 
+
+	Example: python super.py wortels 25
+
+	Arguments:
+		name of the product: required! no spaces allowed and product must exist in the inventory.
+		price: required! only numeric input, dont use currency symbols such as €, $, ...
+
+		The order and position of the arguments are important.
+
+	Detailed function results:
+		when the function successfully ran, you will get a message in the terminal such as "1 wortels have been sold and removed from inventory" At first time use, the app will create 1 file in the data folder: sell_ledger.csv
+
+	3. set-date
+
+	Command_line command: python super.py set-date (--days op --keyword) (number of days or keyword)
+
+	Example 1: python super.py set-date --keyword yesterday
+	Example 2: python super.py set-date --days -3
+
+	Arguments:
+		--keyword: when --keyword is used, the function expects "yesterday" or "today"
+		--days: when --days is used, you can enter the amount of days you want to go back (negative number) or forward (positif number)
+
+		The order and position of the arguments are important.
+
+	Detailed function results:
+		when the function successfully ran, you will get a message in the terminal such as "Working date set to today". The function will write the new working date in the set_date.txt file.
+
+	4. report
+
+	Command_line command: python super.py report (type of report) (--date) (optional timeframe)
+
+	Example 1: python super.py report inventory
+	Example 2: python super.py report profit --date today
+
+	Arguments:
+		type of report: required! All possible type of reports:
+			1. inventory	(current state of the inventory)
+			2. sell_ledger	(overview of all sales)
+			3. buy_ledger	(overview of purchases)
+			4. profit		(total profit or in a specific timeframe)
+			5. revenue		(total revenue or in a specific timeframe)
+			6. graph_profit	(visualisation of profit evolution of past 5 days) 
+		--date: the optional argument --date can be used together with the profit or revenue type of reports. There are 2 timeframes that can be set added after --date: today or yesterday.
+
+
+
+
+

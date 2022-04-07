@@ -1,0 +1,37 @@
+1) Use of external files
+
+I have used external files such as .csv or .txt to store variables and lists. 
+Because Python does not store a "local state" and variables are refreshed every time the application runs.
+So to keep track of the sales ledger, Inventory, date, ... I had to create files in the directory 
+to store this data. My code checks first if the files exist, if they don't they get created first. All these
+files are in the "data" directory. 
+
+2) Bug proofing "sell" function
+
+I had to create a couple of different application routes to make sure that no product can be sold where:
+- the product has no stock in the inventory
+- the product does not exist in the inventory
+
+I did this by creating routes with True & False and returning "deadends" with the right error message.
+For example: if item_exists = False? Then the function stops and returns "Product does not exist in the inventory"
+
+3) Use of 'row_counter'
+
+In buy.jpy I wanted to identify if a certain product is in the Inventory list and wanted to return the ID of that product.
+To make that possible, I created a for loop that increments the variable 'row_counter' with each iteration and the
+for loop 'breaks' when the item is found. The variable 'row_counter' starts at a -1 value because row 1 is actualy ID 0 (because row 1 are the headers)
+
+buy.py line 37 - 42:
+
+        row_counter = -1
+        for row in reader:
+            row_counter += 1
+            if item in row:
+                item_exists = True
+                break
+
+
+
+
+
+
